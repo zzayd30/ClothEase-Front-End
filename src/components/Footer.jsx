@@ -9,7 +9,7 @@ const Footer = () => {
           <p className='w-full md:w-2/3 text-gray-600 mt-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit voluptatum omnis facere quo porro voluptatibus enim sint? Beatae, placeat. Labore magni quibusdam saepe voluptatem eveniet? Quam labore molestiae obcaecati! Excepturi, minus magni?</p>
         </div>
         <div>
-          <p className='text-xl font-medium mb-5'>Company</p>
+          <p className='text-xl mb-5 font-semibold'>Company</p>
           <ul className='flex flex-col gap-1 text-gray-600'>
             <li>Home</li>
             <li>About Us</li>
@@ -18,7 +18,7 @@ const Footer = () => {
           </ul>
         </div>
         <div>
-          <p className='text-xl font-medium mb-5'>Get In Touch</p>
+          <p className='text-xl mb-5 font-semibold'>Get In Touch</p>
           <ul className='flex flex-col gap-1 text-gray-600'>
             <li>+92 321 4567890</li>
             <li>ClothEase@gmail.com</li>
