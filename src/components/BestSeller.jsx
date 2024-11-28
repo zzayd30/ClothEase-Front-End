@@ -8,13 +8,10 @@ const BestSeller = () => {
 
   const { products } = useContext(ShopContext);
   const [BestSeller, setBestSeller] = useState([]);
-  console.log(products);
   useEffect(() => {
     const BestProduct = products.filter((item) => item.bestseller === true);
     setBestSeller(BestProduct.slice(0, 5));
   }, [products])
-
-  console.log(BestSeller);
   return (
     <div className='my-10'>
       <div className='text-center text-3xl py-8'>
