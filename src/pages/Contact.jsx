@@ -22,7 +22,10 @@ const Contact = () => {
           <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
         </div>
       </div>
-      <SendEmail />
+      {/* <div className='md:flex md:items-center'>
+        <img src={assets.contact_img} alt="Contact Image" className='w-full md:h-[500px] md:max-w-[450px]' />
+        <SendEmail /> */}
+      {/* </div> */}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const SendEmail = () => {
   return (
-    <div>
+    <div className='md:min-w-[50vw]'>
       <div
         className="right border m-4 lg:m-8 lg:w-1/2 bg-white border-black rounded-md"
       >
