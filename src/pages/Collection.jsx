@@ -11,6 +11,7 @@ const Collection = () => {
   const [category, setcategory] = useState([])
   const [subcategory, setsubcategory] = useState([])
   const [SortType, setSortType] = useState("relevant")
+  console.log(products);
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
       setcategory(category.filter((item) => item !== e.target.value))
@@ -69,7 +70,7 @@ const Collection = () => {
   
   useEffect(() => {
     ApplyFilter()
-  }, [category, subcategory, Search, ShowSearch])
+  }, [category, subcategory, Search, ShowSearch, products])
 
   useEffect(() => {
     setFilterProduct(products)
@@ -126,7 +127,8 @@ const Collection = () => {
               <ProductItem
                 key={index}
                 id={item._id}
-                image={item.image}
+                image={`http://localhost:4000${item.image}`}
+                // image={"http://localhost:4000" + item.image}
                 name={item.name}
                 price={item.price}
               />

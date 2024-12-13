@@ -1,18 +1,20 @@
 import { createContext } from "react";
-import { products } from "../assets/assets";
+// import { products } from "../assets/assets";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-import Cart from "../pages/Cart";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
 
     const currency = "$";
-    const deliveryCharges = 250;
+    const deliveryCharges = 25;
     const [Search, setSearch] = useState("")
     const [ShowSearch, setShowSearch] = useState(true)
     const [CartItem, setCartItem] = useState({})
+    const [products, setProducts] = useState([])
+    const [token, setToken] = useState("")
     const Navigate = useNavigate()
     const AddToCart = async (itemId, size) => {
 
@@ -41,7 +43,7 @@ const ShopContextProvider = (props) => {
         console.log(CartData)
         setCartItem(CartData)
     }
-    const GetCartCount = () =>{
+    const GetCartCount = () => {
         let count = 0
         for (const items in CartItem) {
             for (const item in CartItem[items]) {
@@ -56,13 +58,13 @@ const ShopContextProvider = (props) => {
         }
         return count;
     }
-    const UpdateQuantity = async (itemId, size, quantity) =>{
+    const UpdateQuantity = async (itemId, size, quantity) => {
         let CartData = structuredClone(CartItem)
 
         CartData[itemId][size] = quantity;
         setCartItem(CartData)
     }
-    
+
     const GetCartAmount = () => {
         let amount = 0
         for (const items in CartItem) {
@@ -80,11 +82,32 @@ const ShopContextProvider = (props) => {
         return amount;
     }
 
+    const getProductData = async () => {
+        try {
+            const response = await axios.get("http://localhost:4000/api/product/list");
+            if (response.data.success) {
+                setProducts(response.data.products);
+            }else{
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+
+        }
+    }
+
+    useEffect(() => {
+        getProductData()
+    }, [])
+
+
     const value = {
         products, currency, deliveryCharges,
         Search, setSearch, setShowSearch, ShowSearch,
         CartItem, AddToCart, Navigate,
-        GetCartCount, UpdateQuantity, GetCartAmount
+        GetCartCount, UpdateQuantity, GetCartAmount,
+        token, setToken
     }
 
     return (
