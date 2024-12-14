@@ -17,7 +17,6 @@ const ShopContextProvider = (props) => {
     const [token, setToken] = useState("")
     const Navigate = useNavigate()
     const AddToCart = async (itemId, size) => {
-
         if (!size) {
             toast.error("Please select product size", {
                 position: "bottom-right",
@@ -40,8 +39,18 @@ const ShopContextProvider = (props) => {
             CartData[itemId] = {}
             CartData[itemId][size] = 1
         }
-        console.log(CartData)
         setCartItem(CartData)
+        if (token) {
+            try {
+                await axios.post("http://localhost:4000/api/cart/add", { itemId, size }, {
+                    headers:
+                        { Authorization: `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.log(error);
+                toast.error(error.message);
+            }
+        }
     }
     const GetCartCount = () => {
         let count = 0
@@ -63,6 +72,19 @@ const ShopContextProvider = (props) => {
 
         CartData[itemId][size] = quantity;
         setCartItem(CartData)
+
+        if (token) {
+            try {
+                await axios.post("http://localhost:4000/api/cart/update", { itemId, size, quantity }, {
+                    headers:
+                        { Authorization: `Bearer ${token}` }
+                });
+            } catch (error) {
+                console.log(error);
+                toast.error(error.message);
+            }
+        }
+
     }
 
     const GetCartAmount = () => {
@@ -87,7 +109,7 @@ const ShopContextProvider = (props) => {
             const response = await axios.get("http://localhost:4000/api/product/list");
             if (response.data.success) {
                 setProducts(response.data.products);
-            }else{
+            } else {
                 toast.error(response.data.message)
             }
         } catch (error) {
@@ -97,9 +119,39 @@ const ShopContextProvider = (props) => {
         }
     }
 
+    const getUserCart = async (token) => {
+        try {
+            const response = await axios.post(
+                "http://localhost:4000/api/cart/get",
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            if (response.data.success) {
+                setCartItem(response.data.cartData);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message);
+        }
+    };
+
+
     useEffect(() => {
         getProductData()
     }, [])
+
+    useEffect(() => {
+        if (!token && localStorage.getItem("token")) {
+            setToken(localStorage.getItem("token"))
+            getUserCart(localStorage.getItem("token"))
+        }
+    }, [])
+
 
 
     const value = {

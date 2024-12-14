@@ -50,7 +50,7 @@ const Collection = () => {
     setFilterProduct(filteredProducts);
   };
 
-  const sortProduct = () =>{
+  const sortProduct = () => {
     let sortedProduct = FilterProduct.slice();
     switch (SortType) {
       case "low-high":
@@ -67,7 +67,7 @@ const Collection = () => {
   useEffect(() => {
     sortProduct();
   }, [SortType])
-  
+
   useEffect(() => {
     ApplyFilter()
   }, [category, subcategory, Search, ShowSearch, products])
@@ -114,7 +114,7 @@ const Collection = () => {
       <div className='flex-1'>
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={"ALL"} text2={"COLLECTION"} />
-          <select onClick={(e)=>{setSortType(e.target.value)}} className='border-2 border-gray-300 px-2 text-sm'>
+          <select onClick={(e) => { setSortType(e.target.value) }} className='border-2 border-gray-300 px-2 text-sm'>
             <option value="relevant">Sort by: Relevance</option>
             <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
@@ -127,8 +127,7 @@ const Collection = () => {
               <ProductItem
                 key={index}
                 id={item._id}
-                image={`http://localhost:4000${item.image}`}
-                // image={"http://localhost:4000" + item.image}
+                image={`http://localhost:4000${item.image[0]}`}
                 name={item.name}
                 price={item.price}
               />

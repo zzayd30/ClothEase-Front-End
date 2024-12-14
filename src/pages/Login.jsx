@@ -5,7 +5,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const Login = () => {
-  const [CurrentState, setCurrentState] = useState("Sign Up")
+  const [CurrentState, setCurrentState] = useState("Login")
   const { token, setToken, Navigate } = useContext(ShopContext)
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")

@@ -9,20 +9,23 @@ const Cart = () => {
   const { CartItem, products, currency, UpdateQuantity, Navigate } = useContext(ShopContext);
   const [CartData, setCartData] = useState([])
   useEffect(() => {
-    const TempData = [];
-    for (const items in CartItem) {
-      for (const item in CartItem[items]) {
-        if (CartItem[items][item] > 0) {
-          TempData.push({
-            _id: items,
-            size: item,
-            quantity: CartItem[items][item]
-          })
+    if (products.length > 0) {
+      const TempData = [];
+      for (const items in CartItem) {
+        for (const item in CartItem[items]) {
+          if (CartItem[items][item] > 0) {
+            TempData.push({
+              _id: items,
+              size: item,
+              quantity: CartItem[items][item]
+            })
+          }
         }
       }
+      setCartData(TempData)
     }
-    setCartData(TempData)
-  }, [CartItem])
+
+  }, [CartItem, products])
 
   return (
     <div className='border-t pt-14'>
@@ -54,12 +57,12 @@ const Cart = () => {
         }
       </div>
       <div className="flex justify-center my-20">
-          <div className="w-full sm:w-[450px]">
-            <CartTotal />
-            <div className="w-full text-end">
-              <button onClick={()=>{Navigate("/PlaceOrder")}} className='bg-black text-white text-sm my-8 px-8 py-3'>Proceed To Check Out</button>
-            </div>
+        <div className="w-full sm:w-[450px]">
+          <CartTotal />
+          <div className="w-full text-end">
+            <button onClick={() => { Navigate("/PlaceOrder") }} className='bg-black text-white text-sm my-8 px-8 py-3'>Proceed To Check Out</button>
           </div>
+        </div>
       </div>
     </div>
   )
