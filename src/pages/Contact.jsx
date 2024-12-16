@@ -6,8 +6,8 @@ import SendEmail from '../components/SendEmail'
 
 const Contact = () => {
   return (
-    <div>
-      <div className="text-center text-2xl pt-10 border-t">
+    <div className='lg:min-h-[76vh] lg:max-w-screen-lg'>
+      {/* <div className="text-center text-2xl pt-10 border-t">
         <Title text1={"CONTACT"} text2={"US"} />
       </div>
 
@@ -21,11 +21,20 @@ const Contact = () => {
           <p className='text-gray-500'>Learn more about our teams and job openings</p>
           <button className='border border-black px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-500'>Explore Jobs</button>
         </div>
+      </div> */}
+      <div className="text-center text-2xl pt-10 border-t">
+        <Title text1={"CONTACT"} text2={"US"} />
       </div>
-      {/* <div className='md:flex md:items-center'>
-        <img src={assets.contact_img} alt="Contact Image" className='w-full md:h-[500px] md:max-w-[450px]' />
-        <SendEmail /> */}
-      {/* </div> */}
+      <div className="flex flex-col md:flex-row items-center md:items-center gap-6">
+        <img
+          className="w-full max-h-[400px] md:max-h-[450px] lg:max-h-[500px] md:w-[40%] lg:w-[45%] object-cover"
+          src={assets.contact_img}
+          alt="Contact Image"
+        />
+        <div className="w-full md:w-[60%]">
+          <SendEmail />
+        </div>
+      </div>
     </div>
   )
 }

@@ -11,7 +11,6 @@ const Collection = () => {
   const [category, setcategory] = useState([])
   const [subcategory, setsubcategory] = useState([])
   const [SortType, setSortType] = useState("relevant")
-  console.log(products);
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {
       setcategory(category.filter((item) => item !== e.target.value))
@@ -123,15 +122,17 @@ const Collection = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
           {
-            FilterProduct.map((item, index) => (
-              <ProductItem
-                key={index}
-                id={item._id}
-                image={`http://localhost:4000${item.image[0]}`}
-                name={item.name}
-                price={item.price}
-              />
-            ))
+            FilterProduct.map((item, index) => {
+              return (
+                <ProductItem
+                  key={index}
+                  id={item._id}
+                  image={`http://localhost:4000${item.image[0]}`}
+                  name={item.name}
+                  price={item.price}
+                />
+              );
+            })
           }
         </div>
       </div>

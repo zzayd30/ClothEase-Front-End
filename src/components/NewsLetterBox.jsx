@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const NewsLetterBox = () => {
     const SubmitHandler = (e) => {
     e.preventDefault();
-    toast.success('You have successfully subscribed to our newsletter!');
+    toast.success('Successfully Subscribed to our Newsletter');
     e.target.reset();
     }
   return (

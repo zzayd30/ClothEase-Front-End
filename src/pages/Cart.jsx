@@ -28,7 +28,7 @@ const Cart = () => {
   }, [CartItem, products])
 
   return (
-    <div className='border-t pt-14'>
+    <div className='border-t min-h-[76vh] pt-14'>
       <div className="text-2xl mb-3">
         <Title text1={"YOUR"} text2={"CART"} />
       </div>
@@ -40,7 +40,7 @@ const Cart = () => {
             return (
               <div key={index} className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4">
                 <div className="flex items-start gap-6">
-                  <img className='w-16 sm:w-20' src={productData.image[0]} alt="Product Image" />
+                  <img className='w-16 sm:w-20' src={`http://localhost:4000${productData.image[0]}`} alt="Product Image" />
                   <div>
                     <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                     <div className="flex items-center gap-5 mt-2">
@@ -56,14 +56,16 @@ const Cart = () => {
           })
         }
       </div>
-      <div className="flex justify-center my-20">
-        <div className="w-full sm:w-[450px]">
-          <CartTotal />
-          <div className="w-full text-end">
-            <button onClick={() => { Navigate("/PlaceOrder") }} className='bg-black text-white text-sm my-8 px-8 py-3'>Proceed To Check Out</button>
+      { CartData.length > 0 ? 
+        <div className="flex justify-center my-20">
+          <div className="w-full sm:w-[450px]">
+            <CartTotal />
+            <div className="w-full text-end">
+              <button onClick={() => { Navigate("/PlaceOrder") }} className='bg-black text-white text-sm my-8 px-8 py-3'>Proceed To Check Out</button>
+            </div>
           </div>
-        </div>
-      </div>
+        </div> : <div className="text-center my-20">Your Cart is Empty</div>
+      }
     </div>
   )
 }

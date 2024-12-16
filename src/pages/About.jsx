@@ -11,11 +11,12 @@ const About = () => {
       </div>
       <div className=" my-10 flex flex-col md:flex-row gap-16">
         <img className='w-full md:max-w-[450px]' src={assets.about_img} alt="About Image" />
-        <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
+        <div className="flex flex-col justify-center gap-4 md:w-2/4 text-gray-600">
           <p>Welcome to <b>ClothEase</b>, where style meets convenience! We are dedicated to bringing you a curated collection of high-quality apparel that caters to every occasion, mood, and personality. From trendy topwear and comfortable bottomwear to cozy winterwear, our diverse range of products ensures there’s something for everyone. </p>
-          <p>Whether you’re shopping for yourself or loved ones, we prioritize delivering the best in fashion, backed by a seamless shopping experience. Our commitment to quality and customer satisfaction drives us to source premium fabrics, create timeless designs, and offer competitive prices that make looking good accessible to all.</p>
           <b>Our Mission</b>
-          <p>At ClothEase, our mission is to revolutionize the way you shop for clothing by blending fashion with functionality. We aim to provide an enjoyable shopping experience where style meets simplicity. By offering a wide selection of high-quality, affordable, and trendy apparel, we empower individuals to express their unique personalities with confidence. We are committed to bridging the gap between fashion and accessibility, ensuring that everyone finds something that resonates with their taste and lifestyle.</p>
+          <p>At ClothEase, our mission is to revolutionize the way you shop for clothing by blending fashion with functionality. We aim to provide an enjoyable shopping experience where style meets simplicity. By offering a wide selection of high-quality, affordable, and trendy apparel, we empower individuals to express their unique personalities with confidence.</p>
+          <b>Our Vision</b>
+          <p>At ClothEase, our vision is to make fashion accessible, sustainable, and innovative. We strive to empower individuals by offering stylish, high-quality apparel while embracing eco-friendly practices and ethical values. Our goal is to inspire confidence and individuality, fostering a future where fashion is both inclusive and responsible.</p>
         </div>
       </div>
 

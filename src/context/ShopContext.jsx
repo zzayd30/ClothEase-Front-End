@@ -46,6 +46,7 @@ const ShopContextProvider = (props) => {
                     headers:
                         { Authorization: `Bearer ${token}` }
                 });
+                toast.success("Product added to cart");
             } catch (error) {
                 console.log(error);
                 toast.error(error.message);

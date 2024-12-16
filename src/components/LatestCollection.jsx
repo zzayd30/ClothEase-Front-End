@@ -23,7 +23,7 @@ const LatestCollection = () => {
                 <ProductItem
                   key={index}
                   id={item._id}
-                  image={item.image}
+                  image={`http://localhost:4000${item.image[0]}`}
                   name={item.name}
                   price={item.price}
                 />
