@@ -7,7 +7,7 @@ import RelatedProducts from '../components/RelatedProducts'
 
 const Product = () => {
   const { productId } = useParams()
-  const { products, currency, AddToCart, CartItem } = useContext(ShopContext)
+  const { products, currency, AddToCart, CartItem, backendUrl } = useContext(ShopContext)
   const [ProductData, setProductData] = useState(false)
   const [Image, setImage] = useState("")
   const [Size, setSize] = useState("")
@@ -34,12 +34,12 @@ const Product = () => {
             {
               ProductData.image.map((item, index) => (
                 console.log(item),
-                <img onClick={() => { setImage(item) }} src={`http://localhost:4000${item}`} alt="Product Image" className='w-[24%] cursor-pointer sm:w-full sm:mb-3 flex-shrink-0' />
+                <img onClick={() => { setImage(item) }} src={`${backendUrl}${item}`} alt="Product Image" className='w-[24%] cursor-pointer sm:w-full sm:mb-3 flex-shrink-0' />
               ))
             }
           </div>
           <div className="w-full sm:w-[80%]">
-            <img src={`http://localhost:4000${Image}`} alt="Product Image" className='w-full h-auto' />
+            <img src={`${backendUrl}${Image}`} alt="Product Image" className='w-full h-auto' />
           </div>
         </div>
 

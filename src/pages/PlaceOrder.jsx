@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import Title from '../components/Title'
 import CartTotal from '../components/CartTotal'
-import { assets } from '../assets/assets'
 import { useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import { toast } from 'react-toastify'
@@ -9,7 +8,7 @@ import axios from 'axios'
 
 const PlaceOrder = () => {
   const [Method, setMethod] = useState("cod")
-  const { Navigate, token, CartItem, setCartItem, GetCartAmount, deliveryCharges, products } = useContext(ShopContext)
+  const { Navigate, token, CartItem, setCartItem, GetCartAmount, deliveryCharges, products, backendUrl } = useContext(ShopContext)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,7 +55,7 @@ const PlaceOrder = () => {
         case "cod":
           if (token) {
             try {
-              const response = await axios.post("http://localhost:4000/api/order/place", orderData, {
+              const response = await axios.post(backendUrl + "/api/order/place", orderData, {
                 headers: { Authorization: `Bearer ${token}` }
               })
               console.log(response.data)

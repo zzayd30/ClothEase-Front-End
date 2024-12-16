@@ -1,5 +1,4 @@
 import { createContext } from "react";
-// import { products } from "../assets/assets";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +9,7 @@ const ShopContextProvider = (props) => {
 
     const currency = "$";
     const deliveryCharges = 25;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const [Search, setSearch] = useState("")
     const [ShowSearch, setShowSearch] = useState(true)
     const [CartItem, setCartItem] = useState({})
@@ -42,7 +42,7 @@ const ShopContextProvider = (props) => {
         setCartItem(CartData)
         if (token) {
             try {
-                await axios.post("http://localhost:4000/api/cart/add", { itemId, size }, {
+                await axios.post(backendUrl + "/api/cart/add", { itemId, size }, {
                     headers:
                         { Authorization: `Bearer ${token}` }
                 });
@@ -76,7 +76,8 @@ const ShopContextProvider = (props) => {
 
         if (token) {
             try {
-                await axios.post("http://localhost:4000/api/cart/update", { itemId, size, quantity }, {
+
+                await axios.post(backendUrl + "/api/cart/update", { itemId, size, quantity }, {
                     headers:
                         { Authorization: `Bearer ${token}` }
                 });
@@ -107,7 +108,7 @@ const ShopContextProvider = (props) => {
 
     const getProductData = async () => {
         try {
-            const response = await axios.get("http://localhost:4000/api/product/list");
+            const response = await axios.get(backendUrl + "/api/product/list");
             if (response.data.success) {
                 setProducts(response.data.products);
             } else {
@@ -123,7 +124,7 @@ const ShopContextProvider = (props) => {
     const getUserCart = async (token) => {
         try {
             const response = await axios.post(
-                "http://localhost:4000/api/cart/get",
+                backendUrl + "/api/cart/get",
                 {},
                 {
                     headers: {
@@ -157,9 +158,9 @@ const ShopContextProvider = (props) => {
     const value = {
         products, currency, deliveryCharges,
         Search, setSearch, setShowSearch, ShowSearch,
-        CartItem, setCartItem,AddToCart, Navigate,
+        CartItem, setCartItem, AddToCart, Navigate,
         GetCartCount, UpdateQuantity, GetCartAmount,
-        token, setToken
+        token, setToken, backendUrl
     }
 
     return (

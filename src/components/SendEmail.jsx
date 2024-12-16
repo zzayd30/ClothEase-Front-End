@@ -12,26 +12,22 @@ const SendEmail = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setLoading(true);  // Set loading to true when request starts
-    setErrorMessage(""); // Reset previous error message
-
-    // Prepare template parameters
+    setLoading(true);
+    setErrorMessage("");
     const templateParams = {
       from_name: name,
       from_email: email,
       subject: subject,
       message: message,
     };
-
-    // Send the email via EmailJS
     emailjs.send(
-      'service_mji72wi',       // EmailJS service ID
-      'template_itpqrmd',      // EmailJS template ID
-      templateParams,          // Template parameters
-      'udq9XLuX-kA06VzUz'     // EmailJS user ID
+      'service_mji72wi',
+      'template_itpqrmd',
+      templateParams,
+      'udq9XLuX-kA06VzUz'
     )
       .then((response) => {
-        setLoading(false); // Set loading to false after receiving response
+        setLoading(false);
         setSuccessMessage("Email sent successfully!");
         setName("");
         setEmail("");

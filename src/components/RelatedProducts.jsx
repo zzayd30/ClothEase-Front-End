@@ -4,7 +4,7 @@ import ProductItem from './ProductItem';
 import Title from './Title';
 
 const RelatedProducts = ({ category, subCategory }) => {
-  const { products } = useContext(ShopContext);
+  const { products,backendUrl } = useContext(ShopContext);
   const [Related, setRelated] = useState([]);
   const handlescrolltop = () => {
     window.scrollTo(0, 0);
@@ -31,7 +31,7 @@ const RelatedProducts = ({ category, subCategory }) => {
             <ProductItem
               key={index}
               id={item._id}
-              image={`http://localhost:4000${item.image[0]}`}
+              image={`${backendUrl}${item.image[0]}`}
               name={item.name}
               price={item.price}
             />

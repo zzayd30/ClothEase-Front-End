@@ -127,7 +127,7 @@ const Collection = () => {
                 <ProductItem
                   key={index}
                   id={item._id}
-                  image={`http://localhost:4000${item.image[0]}`}
+                  image={`${backendUrl}${item.image[0]}`}
                   name={item.name}
                   price={item.price}
                 />

@@ -6,7 +6,7 @@ import { assets } from '../assets/assets';
 import CartTotal from '../components/CartTotal';
 
 const Cart = () => {
-  const { CartItem, products, currency, UpdateQuantity, Navigate } = useContext(ShopContext);
+  const { CartItem, products, currency, UpdateQuantity, Navigate, backendUrl } = useContext(ShopContext);
   const [CartData, setCartData] = useState([])
   useEffect(() => {
     if (products.length > 0) {
@@ -40,7 +40,7 @@ const Cart = () => {
             return (
               <div key={index} className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4">
                 <div className="flex items-start gap-6">
-                  <img className='w-16 sm:w-20' src={`http://localhost:4000${productData.image[0]}`} alt="Product Image" />
+                  <img className='w-16 sm:w-20' src={`${backendUrl}${productData.image[0]}`} alt="Product Image" />
                   <div>
                     <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                     <div className="flex items-center gap-5 mt-2">

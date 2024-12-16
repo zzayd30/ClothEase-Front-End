@@ -2,11 +2,10 @@ import React, { useEffect, useState, useContext } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import Title from './Title'
 import ProductItem from './ProductItem'
-import { assets } from '../assets/assets'
 
 const BestSeller = () => {
 
-  const { products } = useContext(ShopContext);
+  const { products, backendUrl } = useContext(ShopContext);
   const [BestSeller, setBestSeller] = useState([]);
   useEffect(() => {
     const BestProduct = products.filter((item) => item.bestseller === true);
@@ -24,7 +23,7 @@ const BestSeller = () => {
             <ProductItem
               key={item._id}
               id={item._id}
-              image={`http://localhost:4000${item.image[0]}`}
+              image={`${backendUrl}${item.image[0]}`}
               name={item.name}
               price={item.price}
             />
