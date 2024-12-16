@@ -60,6 +60,7 @@ const SendEmail = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="input input-bordered border border-black p-2 w-full rounded-md"
+              required
             />
           </div>
           <div className="mb-4">
@@ -73,6 +74,7 @@ const SendEmail = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="input input-bordered border border-black p-2 w-full rounded-md"
+              required
             />
           </div>
           <div className="mb-4">
@@ -86,6 +88,7 @@ const SendEmail = () => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
               className="input input-bordered border border-black p-2 w-full rounded-md"
+              required
             />
           </div>
           <div className="mb-4">
@@ -98,6 +101,7 @@ const SendEmail = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="textarea textarea-bordered border border-black p-2 w-full h-[150px] rounded-md"
+              required
             ></textarea>
           </div>
           <button

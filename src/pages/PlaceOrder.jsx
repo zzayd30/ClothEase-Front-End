@@ -53,23 +53,6 @@ const PlaceOrder = () => {
       }
 
       switch (Method) {
-        case "stripe":
-          if (token) {
-            try {
-              await axios.post("http://localhost:4000/api/order/placeOrderStripe", orderData, {
-                headers: { Authorization: `Bearer ${token}` }
-              })
-              toast.success("Order Placed Successfully")
-              Navigate("/orders")
-            } catch (error) {
-              console.log(error)
-              toast.error(error.message)
-            }
-          } else {
-            toast.error("Please Login to place order")
-            Navigate("/login")
-          }
-          break;
         case "cod":
           if (token) {
             try {
@@ -133,10 +116,6 @@ const PlaceOrder = () => {
         <div className="mt-12">
           <Title text1={"PAYMENT"} text2={"METHOD"} />
           <div className="flex gap-3 flex-col lg:flex-row">
-            <div onClick={() => { setMethod("stripe") }} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
-              <p className={`min-w-3.5 h-3.5 border rounded-full ${Method === "stripe" ? "bg-green-400" : ""}`}></p>
-              <img className='h-5 mx-4' src={assets.stripe_logo} alt="Stripe Logo" />
-            </div>
             <div onClick={() => { setMethod("cod") }} className="flex items-center gap-3 border p-2 px-3 cursor-pointer">
               <p className={`min-w-3.5 h-3.5 border rounded-full ${Method === "cod" ? "bg-green-400" : ""}`}></p>
               <p className='text-gray-500 text-sm font-medium mx-4'>CASH ON DELIVERY</p>

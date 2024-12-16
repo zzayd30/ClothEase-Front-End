@@ -45,7 +45,7 @@ const Orders = () => {
 
 
   return (
-    <div className='border-t pt-16'>
+    <div className='border-t pt-16 min-h-[71vh]'>
       <div className="text-2xl">
         <Title text1={"YOUR"} text2={"ORDERS"} />
       </div>
